@@ -1,3 +1,7 @@
 name = "hermes"
 main = "src/index.js"
 compatibility_date = "2022-06-13"
+
+# [secrets]
+# BOT_API_KEY
+# CHAT_ID
