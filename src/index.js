@@ -1,6 +1,8 @@
+const corsAllowOrigin = "*";
+const corsAllowMethods = "POST, OPTIONS";
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "POST,OPTIONS",
+  "Access-Control-Allow-Origin": corsAllowOrigin,
+  "Access-Control-Allow-Methods": corsAllowMethods,
   "Access-Control-Max-Age": "86400",
 };
 
@@ -32,7 +34,7 @@ function handleOptions(request) {
     // If you want to allow other HTTP Methods, you can do that here.
     return new Response(null, {
       headers: {
-        Allow: "GET, HEAD, POST, OPTIONS",
+        Allow: corsAllowMethods,
       },
     });
   }
@@ -86,8 +88,8 @@ Message: ${message}`,
       }
     }
 
-    response.headers.set("Access-Control-Allow-Origin", "*");
-    response.headers.set("Access-Control-Allow-Methods", "POST, OPTIONS");
+    response.headers.set("Access-Control-Allow-Origin", corsAllowOrigin);
+    response.headers.set("Access-Control-Allow-Methods", corsAllowMethods);
     return response;
   },
 };
