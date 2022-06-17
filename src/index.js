@@ -13,15 +13,25 @@ export default {
     const { BOT_API_KEY, CHAT_ID } = env;
 
     if (!BOT_API_KEY || !CHAT_ID) {
-      return new Response(env, { status: 500 });
-      // return new Response("Missing environment variables", { status: 500 });
+      return new Response("Missing environment variables", { status: 500 });
     }
 
-    const text = `We received a message from : ${fullname} (${email})`;
-
     try {
-      const telegramResponse = await fetch(
-        `https://api.telegram.org/bot${BOT_API_KEY}/sendMessage?chat_id=${CHAT_ID}&text=${text}`
+      const data = {
+        chat_id: CHAT_ID,
+        text: `We received a message from : ${name} (${email})
+Subject: ${subject}
+Message: ${message}`,
+      };
+      const response = await fetch(
+        `https://api.telegram.org/bot${BOT_API_KEY}/sendMessage`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
       );
 
       return new Response("Message sended successfully !");
