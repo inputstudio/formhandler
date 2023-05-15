@@ -1,0 +1,21 @@
+parameters: {}
+environment: {}
+packages:
+  - name: formhandler
+    shared: false
+    environment: {}
+    parameters: {}
+    annotations: {}
+    functions:
+      - name: formhandler
+        binary: false
+        main: ''
+        runtime: nodejs:18
+        web: true
+        websecure: false
+        parameters: {}
+        environment:
+          BOT_API_KEY: '${BOT_API_KEY}'
+          CHAT_ID: '${CHAT_ID}'
+        annotations: {}
+        limits: {}
