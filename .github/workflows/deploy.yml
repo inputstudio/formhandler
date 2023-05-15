@@ -15,5 +15,6 @@ jobs:
           token: ${{ secrets.DO_PAT }}
       - name: Deploy
         run: |
+          doctl serverless install
           doctl serverless connect default
           doctl serverless deploy .
