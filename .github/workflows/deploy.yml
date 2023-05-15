@@ -1,0 +1,19 @@
+name: 'Deploy'
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  cd:
+    name: 'Deploy with doctl'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DO_PAT }}
+      - name: Deploy
+        run: |
+          doctl serverless connect default
+          doctl serverless deploy .
